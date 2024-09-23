@@ -208,6 +208,37 @@
                 </Button>
                 
             </Grid>
+            <Grid x:Name="Instructions" Grid.Column="1">
+               
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="INSTRUCTIONS"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Fonts/#SMSfont"
+                    FontWeight="Bold"
+                    FontSize="15"
+                    Foreground="{StaticResource AccentBrush}">
+                </TextBlock>
+                
+                <TextBlock
+                    Grid.Row="1"
+                    Text="Click SELECT SAVE FILE, then navigate to -- C:\Users\(YOUR PC NAME HERE)\AppData\LocalLow\Nokta Games\Supermarket Simulator -- and select the newest file. Then just type in the level, money, and/or the checkcount you desire and click apply to whatever you change! Then open the game and enjoy!"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Fonts/#SMSfont"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Foreground="{StaticResource AccentBrush}"
+                    TextWrapping="Wrap">
+                </TextBlock> 
+                
+            </Grid>
         </Grid>
     </Grid>
 </Window>
