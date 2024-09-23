@@ -121,5 +121,17 @@ namespace SMS_Cheats
                 DragMove();
             }
         }
+
+        private void EDapplyBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(EDinput.Text, out int result))
+            {
+                ApplyCheat(saveFilePath, "\"CurrentDay\"", result.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number for completed checkouts.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
