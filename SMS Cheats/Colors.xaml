@@ -1,0 +1,15 @@
+﻿<!-- Colors.xaml -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Define your custom colors here -->
+    <Color x:Key="PrimaryColor">#064789</Color>
+    <Color x:Key="SecondaryColor">#427aa1</Color>
+    <Color x:Key="AccentColor">#ebf2fa</Color>
+
+    <!-- Create SolidColorBrushes using the defined colors -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+
+</ResourceDictionary>
