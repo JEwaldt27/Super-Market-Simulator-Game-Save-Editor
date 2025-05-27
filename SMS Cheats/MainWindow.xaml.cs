@@ -1,59 +1,37 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
+using static SMS_Cheats.Constants;
 
 namespace SMS_Cheats
 {
     public partial class MainWindow : Window
     {
         private string saveFilePath = "";
+        private string[] saveFileContents;
+
+        private string DefaultSaveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "AppData", "LocalLow", "Nokta Games", "Supermarket Simulator");
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        // Apply Money Cheat
-        private void ApplyMoney_Click(object sender, RoutedEventArgs e)
+        #region UI Control Events
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(SMSMoneyInput.Text, out int result))
-            {
-                ApplyCheat(saveFilePath, "\"Money\"", result.ToString());
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid number for money.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            this.Close();
         }
 
-        // Apply Level Cheat
-        private void ApplyLevel_Click(object sender, RoutedEventArgs e)
+        private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (int.TryParse(SMSLevelInput.Text, out int result))
-            {
-                ApplyCheat(saveFilePath, "\"CurrentStoreLevel\"", result.ToString());
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid number for level.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
-        // Apply Completed Checkouts Cheat
-        private void ApplyCC_Click(object sender, RoutedEventArgs e)
-        {
-            if (int.TryParse(SMSccInput.Text, out int result))
-            {
-                ApplyCheat(saveFilePath, "\"CompletedCheckoutCount\"", result.ToString());
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid number for completed checkouts.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        // Select Save File
-        private void SelectSaveFile_Click(object sender, RoutedEventArgs e)
+        private void btnBrowseSaveFile_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog
             {
@@ -61,76 +39,153 @@ namespace SMS_Cheats
                 Filter = "Save files (*.es3)|*.es3|All files (*.*)|*.*"
             };
 
+            if (Directory.Exists(DefaultSaveFolder))
+                openFileDialog.InitialDirectory = DefaultSaveFolder;
+
             if (openFileDialog.ShowDialog() == true)
             {
                 saveFilePath = openFileDialog.FileName;
-                MessageBox.Show("Save file selected successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                ReadSaveFile();
             }
         }
 
-        // Function to apply cheats
-        private void ApplyCheat(string filePath, string searchKey, string newValue)
+        private void btnApplyChanges_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                MessageBox.Show("No save file selected. Please select a save file first.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                try
-                {
-                    string[] contents = File.ReadAllLines(filePath);
-                    bool found = false;
+            SaveChanges();
+        }
 
-                    for (int i = 0; i < contents.Length; i++)
+        private void btnAutoLoadSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Directory.Exists(DefaultSaveFolder))
+                return;
+
+            var mostRecentSave = new DirectoryInfo(DefaultSaveFolder).GetFiles("*.es3").OrderByDescending(f => f.LastWriteTime).FirstOrDefault();
+
+            if (mostRecentSave == null)
+                return;
+
+            saveFilePath = mostRecentSave.FullName;
+            ReadSaveFile();
+        }
+        #endregion
+
+        private void ReadSaveFile()
+        {
+            if (string.IsNullOrEmpty(saveFilePath) || !File.Exists(saveFilePath))
+                return;
+
+            saveFileContents = File.ReadAllLines(saveFilePath);
+
+            txtLevel.Text = ReadValue<string>(Constants.SearchKeys.CurrentStoreLevel);
+            txtMoney.Text = ReadValue<string>(Constants.SearchKeys.Money);
+            txtCheckoutCount.Text = ReadValue<string>(Constants.SearchKeys.CompletedCheckoutCount);
+            txtCurrentDay.Text = ReadValue<string>(Constants.SearchKeys.CurrentDay);
+            txtStoreName.Text = ReadValue<string>(Constants.SearchKeys.StoreName);
+        }
+
+        private string GetUniqueFilePath(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return filePath;
+
+            string directory = Path.GetDirectoryName(filePath);
+            string filenameWithoutExt = Path.GetFileNameWithoutExtension(filePath);
+            string extension = Path.GetExtension(filePath);
+
+            int counter = 1;
+            string newFilePath;
+
+            do
+            {
+                string newFilename = $"{filenameWithoutExt} ({counter}){extension}";
+                newFilePath = Path.Combine(directory, newFilename);
+                counter++;
+            } while (File.Exists(newFilePath));
+
+            return newFilePath;
+        }
+
+        private void SaveChanges()
+        {
+            var backupFilePath = Path.ChangeExtension(saveFilePath, "bak");
+            backupFilePath = GetUniqueFilePath(backupFilePath);
+            File.Copy(saveFilePath, backupFilePath, true);
+
+            Apply<int>(Constants.SearchKeys.CurrentStoreLevel, txtLevel.Text, false);
+            Apply<double>(Constants.SearchKeys.Money, txtMoney.Text, false);
+            Apply<int>(Constants.SearchKeys.CompletedCheckoutCount, txtCheckoutCount.Text, false);
+            Apply<int>(Constants.SearchKeys.CurrentDay, txtCurrentDay.Text, false);
+            Apply<string>(Constants.SearchKeys.StoreName, txtStoreName.Text, false);
+
+            if (chkMaxFuel.IsChecked == true)
+                Apply<int>(Constants.SearchKeys.VehicleGasLevel, Constants.GameValues.MaxFuel, true);
+
+            File.WriteAllLines(saveFilePath, saveFileContents);
+
+            MessageBox.Show($"Changes applied successfully.\n\nA backup file was created at {backupFilePath}", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private T ReadValue<T>(string searchKey)
+        {
+            try
+            {
+                for (int i = 0; i < saveFileContents.Length; i++)
+                {
+                    if (saveFileContents[i].Contains(searchKey))
                     {
-                        if (contents[i].Contains(searchKey))
-                        {
-                            contents[i] = searchKey + ": " + newValue + ",";
-                            found = true;
+                        var foundValue = saveFileContents[i].Split(':').Last();
+                        foundValue = foundValue.Replace("\"", ""); //Remove any extra quotes
+                        foundValue = foundValue.Remove(foundValue.Length - 1, 1).Trim(); //Remove the last comma and trim any whitespace.
+                        return (T)Convert.ChangeType(foundValue, typeof(T));
+                    }
+                }
+                return default;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"Error reading value for {searchKey}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return default;
+            }
+        }
+
+        private void Apply<T>(string searchKey, object newValue, bool isArray)
+        {
+            if (string.IsNullOrEmpty(saveFilePath) || !File.Exists(saveFilePath))
+                return;
+
+            try
+            {
+                T typedValue = (T)Convert.ChangeType(newValue, typeof(T));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"'{newValue}' is not valid for {searchKey}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                for (int i = 0; i < saveFileContents.Length; i++)
+                {
+                    if (saveFileContents[i].Contains(searchKey))
+                    {
+                        string valueToSave = string.Empty;
+
+                        if (typeof(T) == typeof(string))
+                            valueToSave = $"{searchKey} : \"{newValue}\",";
+                        else 
+                            valueToSave = $"{searchKey} : {newValue},";
+
+                        saveFileContents[i] = valueToSave;
+
+                        if (!isArray)
                             break;
-                        }
-                    }
-
-                    if (!found)
-                    {
-                        MessageBox.Show($"Key '{searchKey}' not found in the file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        File.WriteAllLines(filePath, contents);
-                        MessageBox.Show("Successfully modified.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
             }
-        }
-
-        private void CloseBTN_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void TopBar_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) 
+            catch (Exception ex)
             {
-                DragMove();
-            }
-        }
-
-        private void EDapplyBTN_Click(object sender, RoutedEventArgs e)
-        {
-            if (int.TryParse(EDinput.Text, out int result))
-            {
-                ApplyCheat(saveFilePath, "\"CurrentDay\"", result.ToString());
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid number for completed checkouts.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
