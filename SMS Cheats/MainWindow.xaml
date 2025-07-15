@@ -17,7 +17,7 @@
 
             <TextBlock
                 Grid.Column="0"
-                Text="Torch Development"
+                Text="JEwaldt27 / rthomas2395"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontFamily="Fonts/#SMSfont"
