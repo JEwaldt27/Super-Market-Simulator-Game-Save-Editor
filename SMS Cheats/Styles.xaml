@@ -12,7 +12,7 @@
         <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
         <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
     </Style>
-    <Style x:Key="CentreredLabelStyle" TargetType="TextBlock">
+    <Style x:Key="CenteredLabelStyle" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Fonts/#SMSfont" />
@@ -22,7 +22,7 @@
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
     </Style>
-    <Style x:Key="CentreredCheckBoxStyle" TargetType="CheckBox">
+    <Style x:Key="CenteredCheckBoxStyle" TargetType="CheckBox">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Fonts/#SMSfont" />

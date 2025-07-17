@@ -78,37 +78,37 @@
                            Grid.Column="0"
                            Grid.Row="0"
                            Text="Level:"
-                           Style="{StaticResource CentreredLabelStyle}" />
+                           Style="{StaticResource CenteredLabelStyle}" />
 
                 <TextBlock x:Name="EMlabel"
                            Grid.Column="0"
                            Grid.Row="1"
                            Text="Money:"
-                           Style="{StaticResource CentreredLabelStyle}" />
+                           Style="{StaticResource CenteredLabelStyle}" />
 
                 <TextBlock x:Name="ECClabel"
                            Grid.Column="0"
                            Grid.Row="2"
                            Text="Checkout Count:"
-                           Style="{StaticResource CentreredLabelStyle}" />
+                           Style="{StaticResource CenteredLabelStyle}" />
 
                 <TextBlock x:Name="EDlabel"
                            Grid.Column="0"
                            Grid.Row="3"
                            Text="Day Count:"
-                           Style="{StaticResource CentreredLabelStyle}" />
+                           Style="{StaticResource CenteredLabelStyle}" />
 
                 <TextBlock x:Name="lblStoreName"
                            Grid.Column="2"
                            Grid.Row="0"
                            Text="Store Name:"
-                           Style="{StaticResource CentreredLabelStyle}" />
+                           Style="{StaticResource CenteredLabelStyle}" />
 
                 <TextBlock x:Name="lblRefuelVehicles"
                            Grid.Column="2"
                            Grid.Row="1"
                            Text="Max Fuel Vehicles:"
-                           Style="{StaticResource CentreredLabelStyle}" />
+                           Style="{StaticResource CenteredLabelStyle}" />
 
                 <TextBox x:Name="txtLevel"
                          Grid.Column="1"
