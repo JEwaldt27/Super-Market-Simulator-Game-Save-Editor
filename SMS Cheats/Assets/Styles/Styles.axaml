@@ -1,8 +1,7 @@
-﻿<!-- Styles.xaml -->
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="CenteredTextBoxStyle" TargetType="TextBox">
+    <Style Selector="TextBox.centered">
         <Setter Property="Width" Value="160" />
         <Setter Property="Height" Value="30" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -12,24 +11,16 @@
         <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
         <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
     </Style>
-    <Style x:Key="CenteredLabelStyle" TargetType="TextBlock">
+
+    <Style Selector="TextBlock.label">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="Fonts/#SMSfont" />
+        <Setter Property="FontFamily" Value="avares://SMS_Cheats/Assets/Fonts#SMSfont" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
     </Style>
-    <Style x:Key="CenteredCheckBoxStyle" TargetType="CheckBox">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="Fonts/#SMSfont" />
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Height" Value="30" />
-        <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
-    </Style>
 
-</ResourceDictionary>
+</Styles>
