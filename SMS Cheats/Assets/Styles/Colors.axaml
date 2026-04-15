@@ -1,12 +1,24 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="PrimaryColor">#064789</Color>
-    <Color x:Key="SecondaryColor">#427aa1</Color>
-    <Color x:Key="AccentColor">#ebf2fa</Color>
+    <Color x:Key="BackgroundColor">#0d1117</Color>
+    <Color x:Key="SurfaceColor">#161b22</Color>
+    <Color x:Key="CardColor">#1c2128</Color>
+    <Color x:Key="BorderColor">#30363d</Color>
+    <Color x:Key="AccentColor">#7c68ee</Color>
+    <Color x:Key="AccentHoverColor">#9580f2</Color>
+    <Color x:Key="TextColor">#e6edf3</Color>
+    <Color x:Key="MutedColor">#8b949e</Color>
 
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}" />
-    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="BackgroundBrush"  Color="{StaticResource BackgroundColor}" />
+    <SolidColorBrush x:Key="SurfaceBrush"     Color="{StaticResource SurfaceColor}" />
+    <SolidColorBrush x:Key="CardBrush"        Color="{StaticResource CardColor}" />
+    <SolidColorBrush x:Key="BorderBrush"      Color="{StaticResource BorderColor}" />
+    <SolidColorBrush x:Key="AccentBrush"      Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}" />
+    <SolidColorBrush x:Key="TextBrush"        Color="{StaticResource TextColor}" />
+    <SolidColorBrush x:Key="MutedBrush"       Color="{StaticResource MutedColor}" />
+
+    <FontFamily x:Key="AppFont">avares://SMS_Cheats/Assets/Fonts#Chakra Petch</FontFamily>
 
 </ResourceDictionary>

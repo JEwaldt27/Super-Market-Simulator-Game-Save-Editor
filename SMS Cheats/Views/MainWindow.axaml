@@ -4,156 +4,139 @@
         x:Class="SMS_Cheats.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="SMS Cheats"
-        Height="450" Width="800"
+        Height="460" Width="680"
         SystemDecorations="None"
         CanResize="False"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundBrush}">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="44"/>
             <RowDefinition/>
+            <RowDefinition Height="36"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Bar -->
-        <Grid x:Name="TopBar" Grid.Row="0"
-              Background="{StaticResource SecondaryBrush}"
-              PointerPressed="TopBar_PointerPressed">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0"
-                       Text="JEwaldt27 / rthomas2395"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
-                       FontSize="15"
-                       FontWeight="Normal"
-                       Foreground="{StaticResource AccentBrush}" />
-
-            <TextBlock Grid.Column="1"
-                       Text="Super Market Sim Game Save Editor"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
-                       FontSize="20"
-                       FontWeight="Normal"
-                       Foreground="{StaticResource AccentBrush}" />
-
-            <Button Grid.Column="2"
-                    Width="20" Height="20"
-                    Content="X"
-                    Background="{StaticResource PrimaryBrush}"
-                    Foreground="{StaticResource AccentBrush}"
-                    Margin="162,0,5,0"
-                    Click="btnClose_Click" />
-        </Grid>
-
-        <!-- Main Content -->
-        <Grid Grid.Row="1" Background="{StaticResource PrimaryBrush}">
-
-            <Grid x:Name="EditorWindow">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="28"/>
-                </Grid.RowDefinitions>
-
-                <!-- Left labels -->
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Level:"
-                           Classes="label" />
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Money:"
-                           Classes="label" />
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Checkout Count:"
-                           Classes="label" />
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Day Count:"
-                           Classes="label" />
-
-                <!-- Left inputs -->
-                <TextBox Grid.Column="1" Grid.Row="0"
-                         Text="{Binding StoreLevel}"
-                         Classes="centered" />
-                <TextBox Grid.Column="1" Grid.Row="1"
-                         Text="{Binding Money}"
-                         Classes="centered" />
-                <TextBox Grid.Column="1" Grid.Row="2"
-                         Text="{Binding CheckoutCount}"
-                         Classes="centered" />
-                <TextBox Grid.Column="1" Grid.Row="3"
-                         Text="{Binding CurrentDay}"
-                         Classes="centered" />
-
-                <!-- Right labels -->
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Store Name:"
-                           Classes="label" />
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="Max Fuel Vehicles:"
-                           Classes="label" />
-
-                <!-- Right inputs -->
-                <TextBox Grid.Column="3" Grid.Row="0"
-                         Text="{Binding StoreName}"
-                         Classes="centered" />
-                <CheckBox Grid.Column="3" Grid.Row="1"
-                          IsChecked="{Binding MaxFuelChecked}"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          Width="30" Height="30" />
-
-                <!-- Buttons -->
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4"
-                        Height="30" Width="300"
-                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Content="BROWSE SAVE FILE"
-                        FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
-                        FontWeight="Normal" FontSize="15"
-                        Background="{StaticResource SecondaryBrush}"
-                        Foreground="{StaticResource AccentBrush}"
-                        Command="{Binding BrowseSaveFileCommand}" />
-
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"
-                        Height="30" Width="300"
-                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Content="LOAD MOST RECENT SAVE"
-                        FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
-                        FontWeight="Normal" FontSize="15"
-                        Background="{StaticResource SecondaryBrush}"
-                        Foreground="{StaticResource AccentBrush}"
-                        Command="{Binding AutoLoadSaveCommand}" />
-
-                <Button Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5"
-                        Height="30" Width="300"
-                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Content="APPLY CHANGES"
-                        FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
-                        FontWeight="Normal" FontSize="15"
-                        Background="{StaticResource SecondaryBrush}"
-                        Foreground="{StaticResource AccentBrush}"
-                        Command="{Binding ApplyChangesCommand}" />
-
-                <!-- Status bar -->
-                <TextBlock Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6"
-                           Text="{Binding StatusMessage}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
-                           FontSize="12"
-                           Foreground="{StaticResource AccentBrush}" />
+        <!-- ── Title Bar ── -->
+        <Border Grid.Row="0"
+                Background="{StaticResource SurfaceBrush}"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0,0,0,1"
+                PointerPressed="TopBar_PointerPressed">
+            <Grid Margin="14,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="8">
+                    <TextBlock Text="◈"
+                               FontSize="15"
+                               Foreground="{StaticResource AccentBrush}"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Supermarket Save Editor"
+                               FontFamily="{StaticResource AppFont}"
+                               FontSize="14"
+                               Foreground="{StaticResource TextBrush}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Spacing="4">
+                    <TextBlock Text="JEwaldt27 / rthomas2395"
+                               FontFamily="{StaticResource AppFont}"
+                               FontSize="11"
+                               Foreground="{StaticResource MutedBrush}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,0"/>
+                    <Button Content="✕"
+                            Classes="close"
+                            Click="btnClose_Click"/>
+                </StackPanel>
             </Grid>
+        </Border>
 
+        <!-- ── Content ── -->
+        <Grid Grid.Row="1" Margin="16,14,16,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Stats card -->
+            <Border Grid.Column="0" Grid.Row="0" Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="PLAYER STATS" Classes="card-title"/>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="LEVEL" Classes="field-label"/>
+                        <TextBox Text="{Binding StoreLevel}" Classes="field"/>
+                    </StackPanel>
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="MONEY" Classes="field-label"/>
+                        <TextBox Text="{Binding Money}" Classes="field"/>
+                    </StackPanel>
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="COMPLETED CHECKOUTS" Classes="field-label"/>
+                        <TextBox Text="{Binding CheckoutCount}" Classes="field"/>
+                    </StackPanel>
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="CURRENT DAY" Classes="field-label"/>
+                        <TextBox Text="{Binding CurrentDay}" Classes="field"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Store card -->
+            <Border Grid.Column="2" Grid.Row="0" Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="STORE" Classes="card-title"/>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="STORE NAME" Classes="field-label"/>
+                        <TextBox Text="{Binding StoreName}" Classes="field"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="MAX FUEL VEHICLES" Classes="field-label"/>
+                        <ToggleButton IsChecked="{Binding MaxFuelChecked}"
+                                      Content="REFUEL ALL"
+                                      Classes="toggle"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Button row -->
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"
+                        Orientation="Horizontal"
+                        Spacing="8"
+                        Margin="0,12,0,0"
+                        HorizontalAlignment="Right">
+                <Button Content="Browse File"
+                        Classes="secondary"
+                        Command="{Binding BrowseSaveFileCommand}"/>
+                <Button Content="Auto Load"
+                        Classes="secondary"
+                        Command="{Binding AutoLoadSaveCommand}"/>
+                <Button Content="Apply Changes →"
+                        Classes="primary"
+                        Command="{Binding ApplyChangesCommand}"/>
+            </StackPanel>
         </Grid>
+
+        <!-- ── Status Bar ── -->
+        <Border Grid.Row="2"
+                Background="{StaticResource SurfaceBrush}"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="16,0">
+            <TextBlock Text="{Binding StatusMessage}"
+                       VerticalAlignment="Center"
+                       FontFamily="{StaticResource AppFont}"
+                       FontSize="11"
+                       Foreground="{StaticResource MutedBrush}"/>
+        </Border>
     </Grid>
 
 </Window>
