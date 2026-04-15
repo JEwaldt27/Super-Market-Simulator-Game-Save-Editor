@@ -31,7 +31,7 @@
                        VerticalAlignment="Center"
                        FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
                        FontSize="15"
-                       FontWeight="Bold"
+                       FontWeight="Normal"
                        Foreground="{StaticResource AccentBrush}" />
 
             <TextBlock Grid.Column="1"
@@ -40,7 +40,7 @@
                        VerticalAlignment="Center"
                        FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
                        FontSize="20"
-                       FontWeight="Bold"
+                       FontWeight="Normal"
                        Foreground="{StaticResource AccentBrush}" />
 
             <Button Grid.Column="2"
@@ -118,7 +118,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Content="BROWSE SAVE FILE"
                         FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
-                        FontWeight="Bold" FontSize="15"
+                        FontWeight="Normal" FontSize="15"
                         Background="{StaticResource SecondaryBrush}"
                         Foreground="{StaticResource AccentBrush}"
                         Command="{Binding BrowseSaveFileCommand}" />
@@ -128,7 +128,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Content="LOAD MOST RECENT SAVE"
                         FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
-                        FontWeight="Bold" FontSize="15"
+                        FontWeight="Normal" FontSize="15"
                         Background="{StaticResource SecondaryBrush}"
                         Foreground="{StaticResource AccentBrush}"
                         Command="{Binding AutoLoadSaveCommand}" />
@@ -138,7 +138,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Content="APPLY CHANGES"
                         FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
-                        FontWeight="Bold" FontSize="15"
+                        FontWeight="Normal" FontSize="15"
                         Background="{StaticResource SecondaryBrush}"
                         Foreground="{StaticResource AccentBrush}"
                         Command="{Binding ApplyChangesCommand}" />
