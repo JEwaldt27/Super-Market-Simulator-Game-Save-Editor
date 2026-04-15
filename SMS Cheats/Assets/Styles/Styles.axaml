@@ -15,7 +15,7 @@
     <Style Selector="TextBlock.label">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="avares://SMS_Cheats/Assets/Fonts#SMSfont" />
+        <Setter Property="FontFamily" Value="avares://SMS_Cheats/Assets/Fonts#Chakra Petch" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="Wrap" />

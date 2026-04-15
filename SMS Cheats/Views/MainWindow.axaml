@@ -29,7 +29,7 @@
                        Text="JEwaldt27 / rthomas2395"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
+                       FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
                        FontSize="15"
                        FontWeight="Normal"
                        Foreground="{StaticResource AccentBrush}" />
@@ -38,7 +38,7 @@
                        Text="Super Market Sim Game Save Editor"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
+                       FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
                        FontSize="20"
                        FontWeight="Normal"
                        Foreground="{StaticResource AccentBrush}" />
@@ -117,7 +117,7 @@
                         Height="30" Width="300"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Content="BROWSE SAVE FILE"
-                        FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
+                        FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
                         FontWeight="Normal" FontSize="15"
                         Background="{StaticResource SecondaryBrush}"
                         Foreground="{StaticResource AccentBrush}"
@@ -127,7 +127,7 @@
                         Height="30" Width="300"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Content="LOAD MOST RECENT SAVE"
-                        FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
+                        FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
                         FontWeight="Normal" FontSize="15"
                         Background="{StaticResource SecondaryBrush}"
                         Foreground="{StaticResource AccentBrush}"
@@ -137,7 +137,7 @@
                         Height="30" Width="300"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Content="APPLY CHANGES"
-                        FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
+                        FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
                         FontWeight="Normal" FontSize="15"
                         Background="{StaticResource SecondaryBrush}"
                         Foreground="{StaticResource AccentBrush}"
@@ -148,7 +148,7 @@
                            Text="{Binding StatusMessage}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           FontFamily="avares://SMS_Cheats/Assets/Fonts#SMSfont"
+                           FontFamily="avares://SMS_Cheats/Assets/Fonts#Chakra Petch"
                            FontSize="12"
                            Foreground="{StaticResource AccentBrush}" />
             </Grid>
