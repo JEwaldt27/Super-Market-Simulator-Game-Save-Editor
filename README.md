@@ -13,11 +13,15 @@ A cross-platform save file editor for *Supermarket Simulator*. Built with Avalon
 | Field | Type |
 |---|---|
 | Store Level | Integer |
+| Store Points (XP) | Integer |
 | Money | Decimal |
 | Completed Checkouts | Integer |
 | Current Day | Integer |
 | Store Name | Text |
+| Store Expansion Level | Integer |
 | Vehicle Fuel | Toggle (sets all vehicles to max `200`) |
+| Product Licenses | Toggle (unlocks all licenses, IDs 21–47) |
+| Loans | Toggle (clears all outstanding debt) |
 
 ---
 

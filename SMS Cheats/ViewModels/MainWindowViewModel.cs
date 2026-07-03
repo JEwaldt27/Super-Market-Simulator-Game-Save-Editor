@@ -25,6 +25,12 @@ public partial class MainWindowViewModel : ObservableObject
     private string _storeLevel = string.Empty;
 
     [ObservableProperty]
+    private string _storePoints = string.Empty;
+
+    [ObservableProperty]
+    private string _storeUpgradeLevel = string.Empty;
+
+    [ObservableProperty]
     private string _money = string.Empty;
 
     [ObservableProperty]
@@ -38,6 +44,12 @@ public partial class MainWindowViewModel : ObservableObject
 
     [ObservableProperty]
     private bool _maxFuelChecked;
+
+    [ObservableProperty]
+    private bool _unlockLicensesChecked;
+
+    [ObservableProperty]
+    private bool _clearLoansChecked;
 
     [ObservableProperty]
     private string _statusMessage = string.Empty;
@@ -85,6 +97,8 @@ public partial class MainWindowViewModel : ObservableObject
             var backupPath = _service.CreateBackup(_saveFile!.FilePath);
 
             _service.Apply<int>(_saveFile, SearchKeys.CurrentStoreLevel, StoreLevel, false);
+            _service.Apply<int>(_saveFile, SearchKeys.CurrentStorePoint, StorePoints, false);
+            _service.Apply<int>(_saveFile, SearchKeys.StoreUpgradeLevel, StoreUpgradeLevel, false);
             _service.Apply<double>(_saveFile, SearchKeys.Money, Money, false);
             _service.Apply<int>(_saveFile, SearchKeys.CompletedCheckoutCount, CheckoutCount, false);
             _service.Apply<int>(_saveFile, SearchKeys.CurrentDay, CurrentDay, false);
@@ -92,6 +106,17 @@ public partial class MainWindowViewModel : ObservableObject
 
             if (MaxFuelChecked)
                 _service.Apply<int>(_saveFile, SearchKeys.VehicleGasLevel, GameValues.MaxFuel.ToString(), true);
+
+            if (UnlockLicensesChecked)
+                _service.ReplaceArray(_saveFile, SearchKeys.UnlockedLicenses, string.Join(",",
+                    Enumerable.Range(GameValues.FirstLicenseId, GameValues.LastLicenseId - GameValues.FirstLicenseId + 1)));
+
+            if (ClearLoansChecked)
+            {
+                _service.Apply<int>(_saveFile, SearchKeys.LoanTermLength, "-1", true);
+                _service.Apply<int>(_saveFile, SearchKeys.LoanRemainingPayments, "-1", true);
+                _service.Apply<bool>(_saveFile, SearchKeys.LoanTaken, "false", true);
+            }
 
             _service.Save(_saveFile);
             StatusMessage = $"Saved. Backup: {Path.GetFileName(backupPath)}";
@@ -109,6 +134,8 @@ public partial class MainWindowViewModel : ObservableObject
             _saveFile = _service.Load(path);
             SaveFilePath = path;
             StoreLevel = _service.ReadValue<string>(_saveFile, SearchKeys.CurrentStoreLevel);
+            StorePoints = _service.ReadValue<string>(_saveFile, SearchKeys.CurrentStorePoint);
+            StoreUpgradeLevel = _service.ReadValue<string>(_saveFile, SearchKeys.StoreUpgradeLevel);
             Money = _service.ReadValue<string>(_saveFile, SearchKeys.Money);
             CheckoutCount = _service.ReadValue<string>(_saveFile, SearchKeys.CompletedCheckoutCount);
             CurrentDay = _service.ReadValue<string>(_saveFile, SearchKeys.CurrentDay);

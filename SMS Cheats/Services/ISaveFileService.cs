@@ -10,4 +10,5 @@ public interface ISaveFileService
     string? FindMostRecentSave(string folder);
     T ReadValue<T>(SaveFile saveFile, string searchKey);
     void Apply<T>(SaveFile saveFile, string searchKey, string newValue, bool isArray);
+    void ReplaceArray(SaveFile saveFile, string searchKey, string joinedValues);
 }

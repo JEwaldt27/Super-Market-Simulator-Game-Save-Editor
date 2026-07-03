@@ -4,7 +4,7 @@
         x:Class="SMS_Cheats.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="SMS Cheats"
-        Height="460" Width="680"
+        Height="560" Width="680"
         SystemDecorations="None"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
@@ -74,6 +74,10 @@
                         <TextBox Text="{Binding StoreLevel}" Classes="field"/>
                     </StackPanel>
                     <StackPanel Spacing="4">
+                        <TextBlock Text="STORE POINTS (XP)" Classes="field-label"/>
+                        <TextBox Text="{Binding StorePoints}" Classes="field"/>
+                    </StackPanel>
+                    <StackPanel Spacing="4">
                         <TextBlock Text="MONEY" Classes="field-label"/>
                         <TextBox Text="{Binding Money}" Classes="field"/>
                     </StackPanel>
@@ -98,10 +102,29 @@
                         <TextBox Text="{Binding StoreName}" Classes="field"/>
                     </StackPanel>
 
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="EXPANSION LEVEL" Classes="field-label"/>
+                        <TextBox Text="{Binding StoreUpgradeLevel}" Classes="field"/>
+                    </StackPanel>
+
                     <StackPanel Spacing="6">
                         <TextBlock Text="MAX FUEL VEHICLES" Classes="field-label"/>
                         <ToggleButton IsChecked="{Binding MaxFuelChecked}"
                                       Content="REFUEL ALL"
+                                      Classes="toggle"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="PRODUCT LICENSES" Classes="field-label"/>
+                        <ToggleButton IsChecked="{Binding UnlockLicensesChecked}"
+                                      Content="UNLOCK ALL"
+                                      Classes="toggle"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="LOANS" Classes="field-label"/>
+                        <ToggleButton IsChecked="{Binding ClearLoansChecked}"
+                                      Content="CLEAR ALL DEBT"
                                       Classes="toggle"/>
                     </StackPanel>
                 </StackPanel>

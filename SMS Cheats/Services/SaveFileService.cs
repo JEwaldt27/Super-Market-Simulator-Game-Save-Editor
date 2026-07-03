@@ -56,15 +56,43 @@ public class SaveFileService : ISaveFileService
 
         for (int i = 0; i < saveFile.RawLines.Length; i++)
         {
-            if (saveFile.RawLines[i].Contains(searchKey))
-            {
-                saveFile.RawLines[i] = typeof(T) == typeof(string)
-                    ? $"{searchKey} : \"{newValue}\","
-                    : $"{searchKey} : {newValue},";
+            var line = saveFile.RawLines[i];
+            if (!line.Contains(searchKey))
+                continue;
 
-                if (!isArray)
-                    break;
-            }
+            // Preserve indentation and trailing comma so the file format survives round-trips
+            var indent = line[..(line.Length - line.TrimStart().Length)];
+            var comma = line.TrimEnd().EndsWith(',') ? "," : "";
+            saveFile.RawLines[i] = typeof(T) == typeof(string)
+                ? $"{indent}{searchKey} : \"{newValue}\"{comma}"
+                : $"{indent}{searchKey} : {newValue}{comma}";
+
+            if (!isArray)
+                break;
+        }
+    }
+
+    public void ReplaceArray(SaveFile saveFile, string searchKey, string joinedValues)
+    {
+        var lines = saveFile.RawLines.ToList();
+        for (int i = 0; i < lines.Count; i++)
+        {
+            if (!lines[i].Contains(searchKey))
+                continue;
+
+            // Find the closing bracket, then swap everything between for one line of values
+            int close = i + 1;
+            while (close < lines.Count && !lines[close].TrimStart().StartsWith(']'))
+                close++;
+            if (close >= lines.Count)
+                return;
+
+            var closeLine = lines[close];
+            var indent = closeLine[..(closeLine.Length - closeLine.TrimStart().Length)] + "\t";
+            lines.RemoveRange(i + 1, close - (i + 1));
+            lines.Insert(i + 1, indent + joinedValues);
+            saveFile.RawLines = [.. lines];
+            return;
         }
     }
 
