@@ -1,8 +1,8 @@
 # Supermarket Save Editor
 
-A cross-platform save file editor for *Supermarket Simulator*. Built with Avalonia UI and .NET 8 — runs on Windows and Linux.
+A cross-platform save file editor for *Supermarket Simulator*. Built with Avalonia UI and .NET 10 — runs on Windows and Linux.
 
-![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square)
+![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?style=flat-square)
 ![Avalonia](https://img.shields.io/badge/Avalonia-11-7c68ee?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-30363d?style=flat-square)
 
@@ -40,7 +40,7 @@ A cross-platform save file editor for *Supermarket Simulator*. Built with Avalon
 
 ## Building
 
-**Requirements:** .NET 8 SDK
+**Requirements:** .NET 10 SDK
 
 ```bash
 git clone https://github.com/JEwaldt27/Super-Market-Simulator-Game-Save-Editor
